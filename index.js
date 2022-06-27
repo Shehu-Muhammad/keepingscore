@@ -1,4 +1,11 @@
-var count = 0;
+if(!localStorage.getItem("count")) {
+    var count = 0;
+    localStorage.setItem("count", count);
+} else {
+    count = localStorage.getItem("count");
+} 
+
+
 document.getElementById("result").innerHTML = count;
 
 document.querySelectorAll("button").forEach(button => {
@@ -10,9 +17,12 @@ document.querySelectorAll("button").forEach(button => {
         } else if (button.dataset.operation == "reset") {
             resetScore();
         }
+        localStorage.setItem("count", count);
         document.querySelector("#result").innerHTML = count;
     }
 });
+
+
 
 function increaseScore() {
     count++;
